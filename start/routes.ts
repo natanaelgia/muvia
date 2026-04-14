@@ -17,10 +17,10 @@ router.get('/', ({ response }) => response.redirect('/login')).as('home')
 router
   .group(() => {
     router.get('signup', [controllers.NewAccount, 'create']).as('signup')
-    router.post('signup', [controllers.NewAccount, 'store'])
+    router.post('signup', [controllers.NewAccount, 'store']).as('new_account.store')
 
     router.get('login', [controllers.Session, 'create']).as('login')
-    router.post('login', [controllers.Session, 'store'])
+    router.post('login', [controllers.Session, 'store']).as('session.store')
   })
   .use(middleware.guest())
 
