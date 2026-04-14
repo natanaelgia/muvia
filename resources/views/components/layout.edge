@@ -1,19 +1,70 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      AdonisJS - A fully featured web framework for Node.js
-    </title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('dumper')
-  </head>
-  <body>
-    @include('partials/header')
-    <main>
-      @include('partials/flash_alerts')
-      {{{ await $slots.main() }}}
-    </main>
-  </body>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrfToken }}">
+  <title>{{ title ?? 'Muvia' }}</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="d-flex flex-column min-vh-100">
+  {{-- Navbar --}}
+  <nav class="navbar navbar-expand-lg navbar-muvia">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold" href="{{ route('home') }}">Muvia</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        @if(auth.user)
+          <div class="navbar-nav ms-auto align-items-center">
+            <span class="text-white me-3">Olá, {{ auth.user.fullName ?? auth.user.email.split('@')[0] }}</span>
+            <form action="{{ route('logout') }}" method="POST">
+              {{ csrfField() }}
+              <button type="submit" class="btn btn-outline-light btn-sm">Sair</button>
+            </form>
+          </div>
+        @else
+          <div class="navbar-nav ms-auto">
+            <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Entrar</a>
+            <a href="{{ route('signup') }}" class="btn btn-light btn-sm ms-2">Cadastrar</a>
+          </div>
+        @end
+      </div>
+    </div>
+  </nav>
+
+  {{-- Flash Messages --}}
+  @if (flashMessages.has('success'))
+    <div class="container mt-3">
+      <div class="alert alert-success alert-dismissible fade show" role="alert" x-data="alert" x-show="isVisible" x-cloak>
+        {{ flashMessages.get('success') }}
+        <button type="button" class="btn-close" @click="dismiss" data-bs-dismiss="alert"></button>
+      </div>
+    </div>
+  @end
+
+  @if (flashMessages.has('error'))
+    <div class="container mt-3">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" x-data="alert" x-show="isVisible" x-cloak>
+        {{ flashMessages.get('error') }}
+        <button type="button" class="btn-close" @click="dismiss" data-bs-dismiss="alert"></button>
+      </div>
+    </div>
+  @end
+
+  {{-- Main Content --}}
+  <main class="flex-grow-1">
+    {{{ await $slots.main() }}}
+  </main>
+
+  {{-- Footer --}}
+  <footer class="bg-light py-4 mt-auto">
+    <div class="container text-center">
+      <p class="text-muted mb-0">&copy; {{ new Date().getFullYear() }} Muvia. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
 </html>

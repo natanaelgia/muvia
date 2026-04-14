@@ -4,6 +4,10 @@ build
 tmp/*
 !tmp/.gitkeep
 
+# Logs
+logs/*
+!logs/.gitkeep
+
 # Secrets
 .env
 .env.local

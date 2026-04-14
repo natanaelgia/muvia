@@ -8,7 +8,7 @@ import { defineConfig, syncDestination, targets } from '@adonisjs/core/logger'
  */
 const loggerConfig = defineConfig({
   /**
-   * The default logger to use for logging messages.
+   * The default logger to use for logging.
    */
   default: 'app',
 
@@ -47,9 +47,17 @@ const loggerConfig = defineConfig({
       transport: {
         /**
          * Targets define the output destinations for logs.
-         * destination: 1 means stdout (console output).
+         * In production, logs are written to both stdout and a file
+         * for persistence and later analysis.
          */
-        targets: [targets.file({ destination: 1 })],
+        targets: !app.inProduction
+          ? [targets.file({ destination: 1 })]
+          : [
+              targets.file({ destination: 1 }),
+              targets.file({
+                destination: app.makePath('logs/app.log'),
+              }),
+            ],
       },
     },
   },

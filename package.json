@@ -14,7 +14,12 @@
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate:run": "node ace migration:run",
+    "migrate:rollback": "node ace migration:rollback",
+    "migrate:fresh": "node ace migration:fresh",
+    "db:seed": "node ace db:seed",
+    "generate:key": "node ace generate:key"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
@@ -67,6 +72,7 @@
     "@adonisjs/vite": "^5.1.0",
     "@vinejs/vine": "^4.3.0",
     "better-sqlite3": "^12.8.0",
+    "bootstrap": "5.3",
     "edge.js": "^6.5.0",
     "luxon": "^3.7.2",
     "pg": "^8.20.0",

@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 |
 | The `Env.create` method creates an instance of the Env service. The
-| service validates the environment variables and also cast values
+| service validates environment variables and also cast values
 | to JavaScript data types.
 |
 */
@@ -24,4 +24,27 @@ export default await Env.create(new URL('../', import.meta.url), {
 
   // Session
   SESSION_DRIVER: Env.schema.enum(['cookie', 'memory', 'database'] as const),
+
+  // Database
+  DB_HOST: Env.schema.string({ format: 'host' }),
+  DB_PORT: Env.schema.number(),
+  DB_USER: Env.schema.string(),
+  DB_PASSWORD: Env.schema.string(),
+  DB_DATABASE: Env.schema.string(),
+
+  // Asaas (para Fase 4 - Pagamentos)
+  ASAAS_API_URL: Env.schema.string.optional({ format: 'url' }),
+  ASAAS_API_KEY: Env.schema.string.optional(),
+  ASAAS_ACCESS_TOKEN: Env.schema.string.optional(),
+
+  // Storage/S3 (para uploads de documentos e fotos)
+  AWS_ACCESS_KEY_ID: Env.schema.string.optional(),
+  AWS_SECRET_ACCESS_KEY: Env.schema.string.optional(),
+  AWS_BUCKET: Env.schema.string.optional(),
+  AWS_REGION: Env.schema.string.optional(),
+
+  // Geocodificação (para Fase 2 - Localização)
+  GEOCODING_PROVIDER: Env.schema.enum.optional(['nominatim', 'google'] as const),
+  NOMINATIM_API_URL: Env.schema.string.optional({ format: 'url' }),
+  GOOGLE_MAPS_API_KEY: Env.schema.string.optional(),
 })

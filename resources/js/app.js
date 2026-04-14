@@ -1,5 +1,7 @@
 import Alpine from 'alpinejs'
+import * as bootstrap from 'bootstrap'
 
+// Alpine.js
 Alpine.data('alert', function () {
   return {
     isVisible: false,

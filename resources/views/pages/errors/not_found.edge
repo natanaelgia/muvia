@@ -1,8 +1,16 @@
-<h1>
-  404 - Page not found
-</h1>
-<p>
-  This template is rendered by the
-  <a href="http://docs.adonisjs.com/guides/exception-handling#status-pages">status pages feature</a>
-  of the global exception handler.
-</p>
+@layout()
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <h1 class="display-1 fw-bold text-muted">404</h1>
+        <h2 class="mb-4">Página não encontrada</h2>
+        <p class="text-muted mb-4">
+          A página que você está procurando não existe ou foi removida.
+        </p>
+        <a href="{{ route('home') }}" class="btn btn-muvia">
+          Voltar ao início
+        </a>
+      </div>
+    </div>
+  </div>
+@end
