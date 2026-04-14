@@ -14,7 +14,8 @@
       "Bash(cp *)",
       "Bash(mv *)",
       "Bash(sed *)",
-      "Bash(test *)"
+      "Bash(test *)",
+      "Bash(findstr *)"
     ]
   },
   "$version": 3
