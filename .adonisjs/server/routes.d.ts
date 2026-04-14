@@ -6,9 +6,9 @@ export type ScannedRoutes = {
   ALL: {
     'home': { paramsTuple?: []; params?: {} }
     'signup': { paramsTuple?: []; params?: {} }
-    'new_account.store': { paramsTuple?: []; params?: {} }
+    'register.store': { paramsTuple?: []; params?: {} }
     'login': { paramsTuple?: []; params?: {} }
-    'session.store': { paramsTuple?: []; params?: {} }
+    'login.store': { paramsTuple?: []; params?: {} }
     'logout': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -22,8 +22,8 @@ export type ScannedRoutes = {
     'login': { paramsTuple?: []; params?: {} }
   }
   POST: {
-    'new_account.store': { paramsTuple?: []; params?: {} }
-    'session.store': { paramsTuple?: []; params?: {} }
+    'register.store': { paramsTuple?: []; params?: {} }
+    'login.store': { paramsTuple?: []; params?: {} }
     'logout': { paramsTuple?: []; params?: {} }
   }
 }

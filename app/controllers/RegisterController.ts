@@ -3,11 +3,11 @@ import { SignupValidator } from '#validators/SignupValidator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 /**
- * NewAccountController handles user registration.
+ * RegisterController handles user registration.
  * It provides methods for displaying the signup page and creating
  * new user accounts.
  */
-export default class NewAccountController {
+export default class RegisterController {
   /**
    * Display the signup page
    */

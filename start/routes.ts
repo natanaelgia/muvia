@@ -16,16 +16,16 @@ router.get('/', ({ response }) => response.redirect('/login')).as('home')
 
 router
   .group(() => {
-    router.get('signup', [controllers.NewAccount, 'create']).as('signup')
-    router.post('signup', [controllers.NewAccount, 'store']).as('new_account.store')
+    router.get('signup', [controllers.Register, 'create']).as('signup')
+    router.post('signup', [controllers.Register, 'store']).as('register.store')
 
-    router.get('login', [controllers.Session, 'create']).as('login')
-    router.post('login', [controllers.Session, 'store']).as('session.store')
+    router.get('login', [controllers.Login, 'create']).as('login')
+    router.post('login', [controllers.Login, 'store']).as('login.store')
   })
   .use(middleware.guest())
 
 router
   .group(() => {
-    router.post('logout', [controllers.Session, 'destroy']).as('logout')
+    router.post('logout', [controllers.Login, 'destroy']).as('logout')
   })
   .use(middleware.auth())

@@ -2,11 +2,11 @@ import User from '#models/User'
 import type { HttpContext } from '@adonisjs/core/http'
 
 /**
- * SessionController handles user authentication and session management.
+ * LoginController handles user authentication and session management.
  * It provides methods for displaying the login page, authenticating users,
  * and logging out.
  */
-export default class SessionController {
+export default class LoginController {
   /**
    * Display the login page
    */
