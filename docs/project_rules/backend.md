@@ -282,3 +282,77 @@
 
 - Se necessário, versionar API na URL: `/api/v1/...`.
 - Manter changelog de versões.
+
+## 12 — Estrutura do Projeto (Pastas)
+
+### Regra de ouro
+
+**NUNCA** criar pastas duplicadas na raiz do projeto. Usar sempre a estrutura padrão do AdonisJS:
+
+| ❌ Não Fazer (na raiz) | ✅ Fazer |
+|------------------------|----------|
+| `appadapters/` | `app/adapters/` |
+| `appdtos/` | `app/dtos/` |
+| `appevents/` | `app/events/` |
+| `appjobs/` | `app/jobs/` |
+| `applisteners/` | `app/listeners/` |
+| `appservicesauth/` | `app/services/auth/` |
+| `databaseseeders/` | `database/seeders/` |
+| `resourcesviewscomponents/` | `resources/views/components/` |
+| `tmpuploads/` | `tmp/uploads/` |
+
+### Pastas válidas na raiz
+
+- `app/`, `bin/`, `config/`, `database/`, `docs/`, `logs/`, `public/`, `resources/`, `start/`, `tests/`, `tmp/`
+- Arquivos de configuração: `.env`, `.gitignore`, `ace.js`, `adonisrc.ts`, `package.json`, `tsconfig.json`, `vite.config.ts`
+
+### Pastas temporárias (ignoradas pelo git)
+
+- `logs/` — logs de produção (ignorado pelo git, exceto `.gitkeep`)
+- `tmp/` — uploads temporários (ignorado pelo git, exceto `.gitkeep`)
+
+### .gitignore
+
+Adicionar ao `.gitignore`:
+```
+# Dependencies and build
+node_modules
+build
+
+# Environment
+.env
+.env.*
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Temp uploads
+tmp/*
+!tmp/.gitkeep
+
+# Compiled assets
+public/assets
+```
+
+## 13 — HMR e Desenvolvimento
+
+### Hot Module Replacement
+
+- `npm run dev` usa `--hmr` para hot reload
+- Controllers e middleware: hot reload automático
+- Templates Edge: hot reload via Vite
+- Assets CSS/JS: hot reload via Vite
+
+### Quando reiniciar o servidor
+
+**Reiniciar manualmente** (`npm run dev`) quando:
+- Adicionar/remover arquivos Edge
+- Alterar estrutura de pastas
+- Modificar `vite.config.ts`
+- Mudar import aliases no `package.json`
+- HMR não reconhecer mudanças após 5+ segundos
+
+---
+
+**Referência:** Aprendizados da Task T001 — Configurar Projeto AdonisJS
